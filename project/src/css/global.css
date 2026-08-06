@@ -1,0 +1,377 @@
+/* ============================================================
+   global.css
+   Theme tokens, base typography, background, glassmorphism,
+   animations, scrollbars and shared utility classes.
+   ============================================================ */
+
+:root {
+  /* Brand / accent ramp (cyan) — same in both themes */
+  --accent-50: #ecfeff;
+  --accent-100: #cffafe;
+  --accent-200: #a5f3fc;
+  --accent-300: #67e8f9;
+  --accent-400: #22d3ee;
+  --accent-500: #06b6d4;
+  --accent-600: #0891b2;
+  --accent-700: #0e7490;
+
+  /* Semantic colors — same in both themes */
+  --cyan: #22d3ee;
+  --blue: #3b82f6;
+  --emerald: #34d399;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --violet: #a78bfa;
+  --slate: #64748b;
+
+  /* Layout — same in both themes */
+  --navbar-height: 64px;
+  --sidebar-width: 248px;
+  --sidebar-collapsed: 72px;
+  --content-max: 1400px;
+}
+
+/* ---------- Dark theme (default) ---------- */
+:root,
+:root.dark {
+  /* Ink (dark navy) ramp */
+  --ink-950: #070b16;
+  --ink-900: #0b1120;
+  --ink-850: #0f1629;
+  --ink-800: #131c33;
+  --ink-700: #1c2742;
+  --ink-600: #283656;
+
+  /* Text */
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Surfaces */
+  --glass-bg: rgba(19, 28, 51, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur: blur(14px);
+  --surface-solid: #0b1120;
+  --surface-elevated: rgba(11, 17, 32, 0.95);
+  --surface-inset: rgba(255, 255, 255, 0.04);
+  --surface-inset-border: rgba(255, 255, 255, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --surface-row-hover: rgba(255, 255, 255, 0.04);
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --surface-border-strong: rgba(255, 255, 255, 0.1);
+
+  /* Navbar / sidebar */
+  --navbar-bg: rgba(7, 11, 22, 0.85);
+  --sidebar-bg: rgba(11, 17, 32, 0.9);
+
+  /* Headings / emphasis */
+  --heading-color: #ffffff;
+  --value-color: #ffffff;
+  --link-hover-color: #ffffff;
+
+  /* Shadows */
+  --shadow-card: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 0 1px rgba(34, 211, 238, 0.15), 0 8px 30px rgba(8, 145, 178, 0.18);
+
+  /* Backdrops */
+  --backdrop-overlay: rgba(0, 0, 0, 0.4);
+  --backdrop-modal: rgba(0, 0, 0, 0.5);
+
+  /* App background glows */
+  --app-bg: var(--ink-950);
+  --bg-glow-1: rgba(34, 211, 238, 0.1);
+  --bg-glow-2: rgba(16, 185, 129, 0.08);
+  --bg-glow-3: rgba(59, 130, 246, 0.08);
+
+  /* Hero */
+  --hero-bg-gradient: linear-gradient(135deg, var(--ink-950), var(--ink-900), #1e3a5f);
+  --hero-title-color: #ffffff;
+  --hero-text-color: rgba(226, 232, 240, 0.9);
+  --hero-tagline-color: rgba(165, 243, 252, 0.8);
+  --hero-clock-color: #ffffff;
+  --hero-clock-date: rgba(165, 243, 252, 0.7);
+
+  /* Accent tint backgrounds */
+  --accent-tint: rgba(34, 211, 238, 0.15);
+  --accent-tint-border: rgba(34, 211, 238, 0.2);
+  --accent-tint-hover: rgba(34, 211, 238, 0.18);
+
+  /* Tone tints */
+  --emerald-tint: rgba(52, 211, 153, 0.15);
+  --amber-tint: rgba(245, 158, 11, 0.15);
+  --rose-tint: rgba(244, 63, 94, 0.15);
+  --blue-tint: rgba(59, 130, 246, 0.15);
+  --violet-tint: rgba(167, 139, 250, 0.15);
+  --slate-tint: rgba(100, 116, 139, 0.15);
+
+  /* Tone text */
+  --emerald-text: #6ee7b7;
+  --amber-text: #fcd34d;
+  --rose-text: #fda4af;
+  --blue-text: #93c5fd;
+  --violet-text: #c4b5fd;
+  --slate-text: #cbd5e1;
+
+  color-scheme: dark;
+}
+
+/* ---------- Light theme ---------- */
+:root.light {
+  /* Ink ramp repurposed for light surfaces */
+  --ink-950: #f1f5f9;
+  --ink-900: #ffffff;
+  --ink-850: #ffffff;
+  --ink-800: #f8fafc;
+  --ink-700: #e2e8f0;
+  --ink-600: #cbd5e1;
+
+  /* Text */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Surfaces */
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-blur: blur(14px);
+  --surface-solid: #ffffff;
+  --surface-elevated: rgba(255, 255, 255, 0.98);
+  --surface-inset: rgba(15, 23, 42, 0.04);
+  --surface-inset-border: rgba(15, 23, 42, 0.08);
+  --surface-hover: rgba(15, 23, 42, 0.06);
+  --surface-row-hover: rgba(15, 23, 42, 0.03);
+  --surface-border: rgba(15, 23, 42, 0.08);
+  --surface-border-strong: rgba(15, 23, 42, 0.12);
+
+  /* Navbar / sidebar */
+  --navbar-bg: rgba(255, 255, 255, 0.85);
+  --sidebar-bg: rgba(248, 250, 252, 0.9);
+
+  /* Headings / emphasis */
+  --heading-color: #0f172a;
+  --value-color: #0f172a;
+  --link-hover-color: #0f172a;
+
+  /* Shadows */
+  --shadow-card: 0 10px 30px -12px rgba(15, 23, 42, 0.15);
+  --shadow-glow: 0 0 0 1px rgba(6, 182, 212, 0.15), 0 8px 30px rgba(8, 145, 178, 0.12);
+
+  /* Backdrops */
+  --backdrop-overlay: rgba(15, 23, 42, 0.25);
+  --backdrop-modal: rgba(15, 23, 42, 0.3);
+
+  /* App background glows */
+  --app-bg: #f1f5f9;
+  --bg-glow-1: rgba(6, 182, 212, 0.08);
+  --bg-glow-2: rgba(16, 185, 129, 0.06);
+  --bg-glow-3: rgba(59, 130, 246, 0.06);
+
+  /* Hero */
+  --hero-bg-gradient: linear-gradient(135deg, #e0f2fe, #f0f9ff, #dbeafe);
+  --hero-title-color: #0f172a;
+  --hero-text-color: rgba(30, 41, 59, 0.85);
+  --hero-tagline-color: rgba(8, 145, 178, 0.85);
+  --hero-clock-color: #0f172a;
+  --hero-clock-date: rgba(8, 145, 178, 0.7);
+
+  /* Accent tint backgrounds */
+  --accent-tint: rgba(6, 182, 212, 0.12);
+  --accent-tint-border: rgba(6, 182, 212, 0.2);
+  --accent-tint-hover: rgba(6, 182, 212, 0.18);
+
+  /* Tone tints */
+  --emerald-tint: rgba(16, 185, 129, 0.12);
+  --amber-tint: rgba(245, 158, 11, 0.12);
+  --rose-tint: rgba(244, 63, 94, 0.12);
+  --blue-tint: rgba(59, 130, 246, 0.12);
+  --violet-tint: rgba(139, 92, 246, 0.12);
+  --slate-tint: rgba(100, 116, 139, 0.12);
+
+  /* Tone text */
+  --emerald-text: #059669;
+  --amber-text: #d97706;
+  --rose-text: #e11d48;
+  --blue-text: #2563eb;
+  --violet-text: #7c3aed;
+  --slate-text: #475569;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--ink-950);
+  color: var(--text-primary);
+}
+
+/* App background with radial glows */
+.app-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, var(--bg-glow-2), transparent 55%),
+    radial-gradient(900px 700px at 50% 120%, var(--bg-glow-3), transparent 60%),
+    var(--app-bg);
+}
+
+/* Glassmorphism card */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* Rounded card */
+.card-rounded {
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+/* Tabular numbers */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* Mono font */
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInFast {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+.animate-fade-in-fast {
+  animation: fadeInFast 0.25s ease-out both;
+}
+.animate-pulse-soft {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.35s ease-out both;
+}
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out both;
+}
+.animate-spin-slow {
+  animation: spinSlow 8s linear infinite;
+}
+
+/* ---------- Scrollbars ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 140, 180, 0.25);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 140, 180, 0.4);
+  background-clip: padding-box;
+}
+
+/* ---------- Recharts tweaks ---------- */
+.recharts-cartesian-axis-tick text {
+  fill: currentColor;
+  opacity: 0.55;
+  font-size: 11px;
+}
+.recharts-default-tooltip {
+  border-radius: 12px !important;
+  border: 1px solid var(--surface-inset-border) !important;
+  background: var(--surface-elevated) !important;
+  backdrop-filter: blur(10px);
+}
+.recharts-tooltip-label {
+  color: var(--text-primary) !important;
+}
+
+/* ---------- Shared helpers ---------- */
+.text-secondary-muted {
+  color: var(--text-secondary);
+}
+.text-primary-light {
+  color: var(--text-primary);
+}
+.icon-tiler {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+}
+.section-gap {
+  margin-bottom: 1.5rem;
+}

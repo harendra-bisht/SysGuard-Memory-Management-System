@@ -1,0 +1,275 @@
+/* ============================================================
+   cards.css
+   Dashboard stat cards (CPU, RAM, Disk, etc.) and small
+   metric tiles used across pages.
+   ============================================================ */
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+  animation: fadeIn 0.5s ease-out both;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card .glow-orb {
+  position: absolute;
+  top: -48px;
+  right: -48px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.stat-card:hover .glow-orb {
+  opacity: 0.9;
+}
+
+.stat-card .card-top {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stat-card .icon-box {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 1.1rem;
+}
+
+.stat-card .trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.stat-card .trend-up {
+  background: var(--emerald-tint);
+  color: var(--emerald-text);
+  border-color: rgba(52, 211, 153, 0.2);
+}
+
+.stat-card .trend-down {
+  background: var(--rose-tint);
+  color: var(--rose-text);
+  border-color: rgba(244, 63, 94, 0.2);
+}
+
+.stat-card .card-body-area {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.stat-card .card-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.stat-card .card-value-row {
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.stat-card .card-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--value-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-card .card-unit {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.stat-card .card-trend-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.stat-card .card-progress {
+  position: relative;
+  margin-top: 1rem;
+}
+
+/* ---------- Mini metric tile (analytics / dashboard preview) ---------- */
+.metric-tile {
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  animation: fadeIn 0.5s ease-out both;
+  transition: transform 0.3s;
+}
+
+.metric-tile:hover {
+  transform: translateY(-4px);
+}
+
+.metric-tile .tile-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+}
+
+.metric-tile .tile-label {
+  margin-top: 0.75rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.metric-tile .tile-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--value-color);
+  margin-top: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric-tile .tile-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---------- System info tile ---------- */
+.sysinfo-tile {
+  border-radius: 12px;
+  background: var(--surface-inset);
+  padding: 0.75rem 1rem;
+}
+
+.sysinfo-tile .sysinfo-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.sysinfo-tile .sysinfo-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-top: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Resource load bar row ---------- */
+.load-row {
+  margin-bottom: 1rem;
+}
+
+.load-row .load-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.375rem;
+}
+
+.load-row .load-name {
+  color: var(--text-secondary);
+}
+
+.load-row .load-value {
+  font-weight: 600;
+  color: var(--value-color);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Health sub-scores ---------- */
+.subscore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.subscore-tile {
+  border-radius: 10px;
+  background: var(--surface-inset);
+  padding: 0.5rem 0.25rem;
+}
+
+.subscore-tile .subscore-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.subscore-tile .subscore-value {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Radial gauge overlay ---------- */
+.gauge-wrap {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.gauge-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  text-align: center;
+}
+
+.gauge-overlay .gauge-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--value-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.gauge-overlay .gauge-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

@@ -1,0 +1,412 @@
+/* ============================================================
+   navbar.css
+   Top navigation bar styling.
+   ============================================================ */
+
+.navbar-app {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  height: var(--navbar-height);
+  background: var(--navbar-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.navbar-app .logo-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navbar-app .logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-400), var(--blue));
+  box-shadow: var(--shadow-glow);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.navbar-app .logo-text {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--heading-color);
+  line-height: 1.1;
+}
+
+.navbar-app .logo-text .accent {
+  color: var(--accent-400);
+}
+
+.navbar-app .logo-sub {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+/* Desktop nav links */
+.navbar-app .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navbar-app .nav-link-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.navbar-app .nav-link-btn:hover {
+  color: var(--link-hover-color);
+}
+
+.navbar-app .nav-link-btn.active {
+  color: var(--accent-300);
+}
+
+.navbar-app .nav-link-btn.active::after {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-400), var(--blue));
+}
+
+/* Action buttons */
+.navbar-app .action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.navbar-app .action-btn:hover {
+  background: var(--surface-hover);
+}
+
+.navbar-app .bell-wrapper {
+  position: relative;
+}
+
+.navbar-app .bell-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--rose);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+/* Notification dropdown */
+.navbar-app .notif-dropdown {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 320px;
+  border-radius: 16px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--surface-border-strong);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-card);
+  z-index: 1040;
+  transform-origin: top right;
+  animation: scaleIn 0.2s ease-out both;
+}
+
+.navbar-app .notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--surface-inset-border);
+}
+
+.navbar-app .notif-header .title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.navbar-app .notif-header .count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.navbar-app .notif-body {
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.navbar-app .notif-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--surface-row-hover);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.navbar-app .notif-item:hover {
+  background: var(--surface-row-hover);
+}
+
+.navbar-app .notif-dot {
+  margin-top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.navbar-app .notif-item-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.navbar-app .notif-item-time {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.navbar-app .notif-item-msg {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.navbar-app .notif-footer-btn {
+  width: 100%;
+  padding: 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent-300);
+  background: none;
+  border: none;
+  border-radius: 0 0 16px 16px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.navbar-app .notif-footer-btn:hover {
+  background: var(--surface-row-hover);
+}
+
+/* Mobile nav */
+.navbar-app .mobile-nav {
+  border-top: 1px solid var(--surface-border);
+  animation: fadeInFast 0.25s ease-out both;
+  padding: 0.5rem 0;
+}
+
+.navbar-app .mobile-nav .nav-link-btn {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0.625rem 0.75rem;
+}
+
+.navbar-app .mobile-nav .nav-link-btn.active {
+  background: var(--accent-tint);
+  color: var(--accent-300);
+}
+
+/* Sidebar toggle button in navbar */
+.navbar-app .sidebar-toggle {
+  font-size: 1.1rem;
+}
+
+/* Profile drawer */
+.profile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--backdrop-overlay);
+  backdrop-filter: blur(4px);
+  animation: fadeInFast 0.25s ease-out both;
+}
+
+.profile-drawer {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-card);
+  animation: slideInRight 0.35s ease-out both;
+  overflow-y: auto;
+}
+
+.profile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--surface-inset-border);
+}
+
+.profile-drawer-header h3 {
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 0;
+}
+
+.profile-drawer-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.profile-drawer-close:hover {
+  background: var(--surface-hover);
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent-400), var(--blue));
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow);
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface-inset);
+}
+
+.profile-row .key {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.profile-row .val {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.online-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 11px;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  background: var(--emerald-tint);
+  color: var(--emerald-text);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.online-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--emerald);
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+.profile-drawer-body {
+  padding: 1.25rem;
+}
+
+.profile-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--surface-inset);
+  border: 1px solid var(--surface-inset-border);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.profile-action-btn:hover {
+  background: var(--surface-hover);
+}
+
+.profile-action-btn.primary {
+  color: var(--accent-300);
+  border-color: rgba(34, 211, 238, 0.3);
+  background: var(--accent-tint);
+}
+
+.profile-action-btn.primary:hover {
+  background: var(--accent-tint-hover);
+}
+
+.profile-action-btn.danger {
+  color: var(--rose-text);
+  border-color: rgba(244, 63, 94, 0.25);
+  background: var(--rose-tint);
+}
+
+.profile-action-btn.danger:hover {
+  background: rgba(244, 63, 94, 0.15);
+}

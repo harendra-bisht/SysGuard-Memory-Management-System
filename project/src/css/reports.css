@@ -1,0 +1,180 @@
+/* ============================================================
+   reports.css
+   Reports page: report cards, export buttons, timeline.
+   ============================================================ */
+
+.reports-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+}
+
+.reports-header .sub {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.report-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+  animation: fadeIn 0.5s ease-out both;
+  transition: transform 0.3s;
+}
+
+.report-card:hover {
+  transform: translateY(-4px);
+}
+
+.report-card .report-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.report-card .report-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 1.1rem;
+}
+
+.report-card h3 {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.report-card .report-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+  flex: 1;
+}
+
+/* Export buttons */
+.export-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.export-btn:hover {
+  border-color: rgba(34, 211, 238, 0.3);
+}
+
+.export-btn .export-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 0.85rem;
+}
+
+.export-btn .export-label {
+  flex: 1;
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.export-btn .export-arrow {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.export-btn:hover .export-arrow {
+  color: var(--accent-400);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 24px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 8px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -18px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 4px solid var(--ink-900);
+}
+
+.timeline-item .timeline-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.timeline-item .timeline-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.timeline-item .timeline-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Download toast */
+.download-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 12px;
+  background: var(--ink-900);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-card);
+  padding: 0.75rem 1rem;
+  animation: slideInRight 0.35s ease-out both;
+}

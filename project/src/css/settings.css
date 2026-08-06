@@ -1,0 +1,189 @@
+/* ============================================================
+   settings.css
+   Settings page: toggle switches, sliders, inputs, save bar.
+   ============================================================ */
+
+.settings-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 0;
+}
+
+.settings-header .sub {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.settings-wrap {
+  max-width: 56rem;
+}
+
+/* Toggle switch */
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-switch.on {
+  background: linear-gradient(90deg, var(--accent-500), var(--blue));
+}
+
+.toggle-switch.off {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.toggle-switch .toggle-knob {
+  position: absolute;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.toggle-switch.on .toggle-knob {
+  transform: translateX(20px);
+}
+
+.toggle-switch.off .toggle-knob {
+  transform: translateX(2px);
+}
+
+/* Setting row */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row .setting-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.setting-row .setting-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Range slider */
+.range-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-400);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-400);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+}
+
+/* Text input */
+.settings-input {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.settings-input:focus {
+  outline: 2px solid rgba(34, 211, 238, 0.5);
+  outline-offset: 1px;
+}
+
+.settings-select {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.settings-select:focus {
+  outline: 2px solid rgba(34, 211, 238, 0.5);
+  outline-offset: 1px;
+}
+
+.settings-select option {
+  background: var(--ink-900);
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* Auto-export row */
+.auto-export-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.625rem 1rem;
+}
+
+.auto-export-row .label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.auto-export-row .desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Save bar */
+.save-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+}
