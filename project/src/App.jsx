@@ -14,11 +14,20 @@ import { ProcessManager } from '@/pages/ProcessManager';
 import { Analytics } from '@/pages/Analytics';
 import { Reports } from '@/pages/Reports';
 import { SettingsPage } from '@/pages/Settings';
+import { Login } from '@/pages/Login';
 
 function App() {
   const [page, setPage] = useState('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+const [user, setUser] = useState(null);
+
+const handleLogin = (userData) => {
+  setUser(userData);
+  setLoggedIn(true);
+};
 
   // Toggle sidebar on desktop, open overlay on mobile
   const handleToggleSidebar = () => {
@@ -29,6 +38,13 @@ function App() {
     }
   };
 
+if (!loggedIn) {
+  return (
+    <ThemeProvider>
+      <Login onLogin={handleLogin} />
+    </ThemeProvider>
+  );
+}
   return (
     <ThemeProvider>
       <div className="app-bg">

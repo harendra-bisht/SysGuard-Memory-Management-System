@@ -19,6 +19,7 @@ export const navItems = [
 
 export function Navbar({ page, setPage, onToggleSidebar }) {
   const { theme, toggle } = useTheme();
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [bellOpen, setBellOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -26,32 +27,49 @@ export function Navbar({ page, setPage, onToggleSidebar }) {
   const unread = defaultNotifs.filter((n) => n.unread).length;
 
   const toneColor = (tone) => {
-    const map = { amber: '#f59e0b', rose: '#f43f5e', cyan: '#22d3ee', emerald: '#34d399' };
+    const map = {
+      amber: '#f59e0b',
+      rose: '#f43f5e',
+      cyan: '#22d3ee',
+      emerald: '#34d399',
+    };
+
     return map[tone] || '#64748b';
   };
 
   return (
     <>
-    <header className="navbar-app">
-      <div className="container-fluid px-3 px-sm-4">
-        <div className="d-flex align-items-center justify-content-between" style={{ height: 'var(--navbar-height)' }}>
+      <header className="top-navbar">
+        <div
+          className="d-flex align-items-center justify-content-between"
+          style={{ height: 'var(--navbar-height)' }}
+        >
           {/* Logo + sidebar toggle */}
           <div className="d-flex align-items-center gap-2">
-            <button className="action-btn sidebar-toggle d-none d-lg-grid" onClick={onToggleSidebar} aria-label="Toggle sidebar">
+            <button
+              className="action-btn"
+              onClick={onToggleSidebar}
+              aria-label="Toggle sidebar"
+            >
               <i className="fa-solid fa-bars" />
             </button>
-            <button className="action-btn d-lg-none" onClick={onToggleSidebar} aria-label="Open menu">
-              <i className="fa-solid fa-bars" />
-            </button>
-            <button className="logo-btn" onClick={() => setPage('dashboard')}>
-              <div className="logo-icon">
+
+            <button
+              className="logo-btn"
+              onClick={() => setPage('dashboard')}
+            >
+              <div className="d-flex align-items-center gap-2">
                 <i className="fa-solid fa-shield-halved" />
-              </div>
-              <div className="text-start lh-1">
-                <div className="logo-text">
-                  System Health <span className="accent">Dashboard</span>
+
+                <div>
+                  <div className="fw-bold text-white">
+                    System Health Dashboard
+                  </div>
+
+                  <div className="small text-secondary-muted">
+                    OS Performance Monitor
+                  </div>
                 </div>
-                <div className="logo-sub">OS Performance Monitor</div>
               </div>
             </button>
           </div>
@@ -60,6 +78,7 @@ export function Navbar({ page, setPage, onToggleSidebar }) {
           <nav className="nav-links d-none d-lg-flex">
             {navItems.map((item) => {
               const active = page === item.id;
+
               return (
                 <button
                   key={item.id}
@@ -75,61 +94,121 @@ export function Navbar({ page, setPage, onToggleSidebar }) {
 
           {/* Actions */}
           <div className="d-flex align-items-center gap-1">
-            <button className="action-btn" onClick={toggle} aria-label="Toggle theme">
-              <i className={`fa-solid ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`} />
+            {/* Theme */}
+            <button
+              className="action-btn"
+              onClick={toggle}
+              aria-label="Toggle theme"
+            >
+              <i
+                className={`fa-solid ${
+                  theme === 'dark' ? 'fa-sun' : 'fa-moon'
+                }`}
+              />
             </button>
 
             {/* Notifications */}
             <div className="bell-wrapper">
-              <button className="action-btn" onClick={() => setBellOpen((v) => !v)} aria-label="Notifications">
+              <button
+                className="action-btn"
+                onClick={() => setBellOpen((v) => !v)}
+                aria-label="Notifications"
+              >
                 <i className="fa-solid fa-bell" />
-                {unread > 0 && <span className="bell-badge">{unread}</span>}
+
+                {unread > 0 && (
+                  <span className="bell-badge">{unread}</span>
+                )}
               </button>
+
               {bellOpen && (
                 <>
-                  <div className="position-fixed top-0 start-0 w-100 h-100" style={{ zIndex: 1030 }} onClick={() => setBellOpen(false)} />
+                  <div
+                    className="position-fixed top-0 start-0 w-100 h-100"
+                    style={{ zIndex: 1030 }}
+                    onClick={() => setBellOpen(false)}
+                  />
+
                   <div className="notif-dropdown">
                     <div className="notif-header">
                       <span className="title">Notifications</span>
                       <span className="count">{unread} unread</span>
                     </div>
+
                     <div className="notif-body">
                       {defaultNotifs.map((n) => (
                         <div key={n.id} className="notif-item">
-                          <span className="notif-dot" style={{ background: toneColor(n.tone) }} />
+                          <span
+                            className="notif-dot"
+                            style={{
+                              background: toneColor(n.tone),
+                            }}
+                          />
+
                           <div className="flex-grow-1 min-w-0">
                             <div className="d-flex align-items-center justify-content-between gap-2">
-                              <p className="notif-item-title text-truncate">{n.title}</p>
-                              <span className="notif-item-time">{n.time}</span>
+                              <p className="notif-item-title text-truncate">
+                                {n.title}
+                              </p>
+
+                              <span className="notif-item-time">
+                                {n.time}
+                              </span>
                             </div>
-                            <div className="notif-item-msg">{n.message}</div>
+
+                            <div className="notif-item-msg">
+                              {n.message}
+                            </div>
                           </div>
                         </div>
                       ))}
                     </div>
-                    <button className="notif-footer-btn">View all notifications</button>
+
+                    <button className="notif-footer-btn">
+                      View all notifications
+                    </button>
                   </div>
                 </>
               )}
             </div>
 
-            <button className="action-btn" onClick={() => setDrawerOpen(true)} aria-label="Profile">
+            {/* Profile */}
+            <button
+              className="action-btn"
+              onClick={() => setDrawerOpen(true)}
+              aria-label="Profile"
+            >
               <i className="fa-solid fa-user" />
+            </button>
+
+            {/* Mobile menu */}
+            <button
+              className="action-btn d-lg-none"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Mobile menu"
+            >
+              <i className="fa-solid fa-bars" />
             </button>
           </div>
         </div>
 
-        {/* Mobile nav */}
+        {/* Mobile navigation */}
         {mobileOpen && (
           <nav className="mobile-nav d-lg-none">
             <div className="container-fluid px-0">
               {navItems.map((item) => {
                 const active = page === item.id;
+
                 return (
                   <button
                     key={item.id}
-                    className={`nav-link-btn ${active ? 'active' : ''}`}
-                    onClick={() => { setPage(item.id); setMobileOpen(false); }}
+                    className={`nav-link-btn ${
+                      active ? 'active' : ''
+                    }`}
+                    onClick={() => {
+                      setPage(item.id);
+                      setMobileOpen(false);
+                    }}
                   >
                     <i className={`fa-solid fa-${item.icon}`} />
                     {item.label}
@@ -139,62 +218,170 @@ export function Navbar({ page, setPage, onToggleSidebar }) {
             </div>
           </nav>
         )}
-      </div>
-    </header>
+      </header>
 
-      {drawerOpen && <ProfileDrawer onClose={() => setDrawerOpen(false)} />}
+      {/* Profile Drawer */}
+      {drawerOpen && (
+        <ProfileDrawer
+          onClose={() => setDrawerOpen(false)}
+        />
+      )}
     </>
   );
 }
 
-/* ---------- Profile drawer ---------- */
+/* ============================================================
+   Profile Drawer
+   ============================================================ */
+
 function ProfileDrawer({ onClose }) {
   const rows = [
-    { k: 'Email', v: 'bishtharendra758@gmail.com' },
-    { k: 'Role', v: 'System Administrator' },
-    { k: 'Project', v: 'System Health Dashboard' },
-    { k: 'Department', v: 'Operating Systems' },
-    { k: 'Last Login', v: 'Aug 6, 2026 · 08:42 UTC' },
-    { k: 'Member Since', v: 'January 2024' },
-    { k: 'Device', v: 'Workstation · x86_64' },
-    { k: 'Operating System', v: 'Ubuntu 24.04 LTS' },
+    {
+      k: 'Email',
+      v: 'bishtharendra758@gmail.com',
+    },
+    {
+      k: 'Role',
+      v: 'System Administrator',
+    },
+    {
+      k: 'Project',
+      v: 'System Health Dashboard',
+    },
+    {
+      k: 'Department',
+      v: 'Operating Systems',
+    },
+    {
+      k: 'Last Login',
+      v: 'Aug 6, 2026 · 08:42 UTC',
+    },
+    {
+      k: 'Member Since',
+      v: 'January 2024',
+    },
+    {
+      k: 'Device',
+      v: 'Workstation · x86_64',
+    },
+    {
+      k: 'Operating System',
+      v: 'Ubuntu 24.04 LTS',
+    },
   ];
+
+  /* ---------- Logout ---------- */
+  const handleLogout = async () => {
+    try {
+      const response = await fetch(
+        'http://127.0.0.1:5000/api/logout',
+        {
+          method: 'POST',
+          credentials: 'include',
+        }
+      );
+
+      if (!response.ok) {
+        console.error('Logout request failed.');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+
+    // Reload so the application returns to the login screen.
+    window.location.reload();
+  };
+
   return (
     <div className="profile-drawer-overlay">
-      <div className="profile-drawer-backdrop" onClick={onClose} />
+      {/* Click outside to close */}
+      <div
+        className="profile-drawer-backdrop"
+        onClick={onClose}
+      />
+
       <div className="profile-drawer">
+        {/* Header */}
         <div className="profile-drawer-header">
           <h3>Profile</h3>
-          <button className="profile-drawer-close" onClick={onClose}>
+
+          <button
+            type="button"
+            className="profile-drawer-close"
+            onClick={onClose}
+          >
             <i className="fa-solid fa-xmark" />
           </button>
         </div>
+
+        {/* Body */}
         <div className="profile-drawer-body">
+          {/* Profile information */}
           <div className="d-flex flex-column align-items-center text-center">
             <div className="profile-avatar">HB</div>
-            <h4 className="mt-3 mb-0 fw-semibold" style={{ color: 'var(--heading-color)' }}>Harendra Bisht</h4>
-            <p className="small mb-2" style={{ color: 'var(--text-secondary)' }}>System Administrator</p>
+
+            <h4
+              className="mt-3 mb-0 fw-semibold"
+              style={{
+                color: 'var(--heading-color)',
+              }}
+            >
+              Harendra Bisht
+            </h4>
+
+            <p
+              className="small mb-2"
+              style={{
+                color: 'var(--text-secondary)',
+              }}
+            >
+              System Administrator
+            </p>
+
             <span className="online-badge">
               <span className="dot" /> System Status: Online
             </span>
           </div>
+
+          {/* Account details */}
           <div className="mt-4 d-flex flex-column gap-2">
             {rows.map((r) => (
-              <div key={r.k} className="profile-row">
+              <div
+                key={r.k}
+                className="profile-row"
+              >
                 <span className="key">{r.k}</span>
                 <span className="val">{r.v}</span>
               </div>
             ))}
           </div>
+
+          {/* Profile actions */}
           <div className="mt-4 d-flex flex-column gap-2">
-            <button className="profile-action-btn primary">
-              <i className="fa-solid fa-user-pen" /> Edit Profile
+            <button
+              type="button"
+              className="profile-action-btn primary"
+            >
+              <i className="fa-solid fa-user-pen" />
+              Edit Profile
             </button>
-            <button className="profile-action-btn">
-              <i className="fa-solid fa-gear" /> Account Settings
+
+            <button
+              type="button"
+              className="profile-action-btn"
+            >
+              <i className="fa-solid fa-gear" />
+              Account Settings
             </button>
-            <button className="profile-action-btn danger">
-              <i className="fa-solid fa-arrow-right-from-bracket" /> Logout
+
+            {/* LOGOUT BUTTON */}
+            <button
+              type="button"
+              className="profile-action-btn danger"
+              onClick={handleLogout}
+            >
+              <i className="fa-solid fa-arrow-right-from-bracket" />
+              Logout
             </button>
           </div>
         </div>

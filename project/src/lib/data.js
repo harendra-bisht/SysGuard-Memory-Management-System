@@ -109,20 +109,47 @@ function jitter(base, amp, min = 0, max = 100) {
 
 // Live-updating metric values
 export function useLiveMetrics() {
-  const [m, setM] = useState({ cpu: 42, ram: 63, disk: 71, net: 28, battery: 84, health: 92 });
+  const [m, setM] = useState({
+    cpu: 0,
+    ram: 0,
+    disk: 0,
+    net: 0,
+    battery: 100,
+    health: 100,
+  });
+
   useEffect(() => {
-    const t = setInterval(() => {
-      setM((p) => ({
-        cpu: +jitter(p.cpu, 6).toFixed(1),
-        ram: +jitter(p.ram, 4).toFixed(1),
-        disk: +jitter(p.disk, 1.5, 0, 100).toFixed(1),
-        net: +jitter(p.net, 18, 0, 100).toFixed(1),
-        battery: +jitter(p.battery, 0.4, 5, 100).toFixed(1),
-        health: +jitter(p.health, 3, 40, 100).toFixed(0),
-      }));
-    }, 2000);
-    return () => clearInterval(t);
+    const fetchMetrics = async () => {
+      try {
+       const response = await fetch('http://127.0.0.1:5000/api/metrics');
+        if (!response.ok) {
+          throw new Error('Failed to fetch system metrics');
+        }
+
+        const data = await response.json();
+
+        setM({
+          cpu: data.cpu,
+          ram: data.ram,
+          disk: data.disk,
+          net: data.net,
+          battery: data.battery,
+          health: data.health,
+        });
+      } catch (error) {
+        console.error('Backend connection error:', error);
+      }
+    };
+
+    // Get data immediately
+    fetchMetrics();
+
+    // Update every 2 seconds
+    const interval = setInterval(fetchMetrics, 2000);
+
+    return () => clearInterval(interval);
   }, []);
+
   return m;
 }
 
